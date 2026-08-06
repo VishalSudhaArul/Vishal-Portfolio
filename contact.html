@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Contact — Vishal Sudha Arul</title>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+
+        /* ── LAYOUT ── */
+        .contact-layout {
+            display              : grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap                  : 4rem;
+            align-items          : start;
+        }
+
+
+        /* ── LEFT COLUMN ── */
+        .contact-headline {
+            font-family   : var(--fd);
+            font-size     : clamp(2rem, 3.5vw, 2.8rem);
+            font-weight   : 700;
+            color         : #fff;
+            letter-spacing: -2px;
+            line-height   : 1.1;
+            margin-bottom : 1.3rem;
+        }
+
+        .contact-headline span {
+            background             : linear-gradient(135deg, var(--blue), var(--cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .contact-sub {
+            color        : var(--muted);
+            font-size    : 0.92rem;
+            line-height  : 1.75;
+            margin-bottom: 2rem;
+            font-weight  : 300;
+        }
+
+        /* Contact links */
+        .links-list { display: flex; flex-direction: column; gap: 0.8rem; }
+
+        .contact-link {
+            display        : flex;
+            align-items    : center;
+            gap            : 1rem;
+            padding        : 0.95rem 1.2rem;
+            border-radius  : 14px;
+            text-decoration: none;
+            border         : 1px solid var(--card-b);
+            background     : var(--card);
+            transition     : all 0.25s;
+        }
+
+        .contact-link:hover {
+            border-color: rgba(79, 142, 247, 0.4);
+            background  : rgba(79, 142, 247, 0.07);
+            transform   : translateX(6px);
+        }
+
+        .link-icon {
+            width          : 38px;
+            height         : 38px;
+            border-radius  : 10px;
+            background     : rgba(79, 142, 247, 0.1);
+            border         : 1px solid rgba(79, 142, 247, 0.14);
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            font-size      : 0.95rem;
+            flex-shrink    : 0;
+        }
+
+        .link-label { font-family: var(--fm); font-size: 0.6rem;  color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.1rem; }
+        .link-value { font-size:   0.88rem;   font-weight: 500; color: var(--text); }
+
+        /* CV Download Card */
+        .cv-card {
+            margin-top   : 1.5rem;
+            padding      : 1.4rem 1.5rem;
+            border-radius: 16px;
+            background   : linear-gradient(135deg, rgba(79,142,247,.1), rgba(56,189,248,.06));
+            border       : 1px solid rgba(79, 142, 247, 0.2);
+            display      : flex;
+            align-items  : center;
+            justify-content: space-between;
+            gap          : 1rem;
+            flex-wrap    : wrap;
+        }
+
+        .cv-card-info { display: flex; align-items: center; gap: 1rem; }
+
+        .cv-card-icon {
+            width          : 44px;
+            height         : 44px;
+            border-radius  : 12px;
+            background     : rgba(79, 142, 247, 0.15);
+            border         : 1px solid rgba(79, 142, 247, 0.25);
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            font-size      : 1.2rem;
+            flex-shrink    : 0;
+        }
+
+        .cv-card-name { font-family: var(--fd); font-weight: 700; color: #fff; font-size: 0.95rem; margin-bottom: 0.15rem; }
+        .cv-card-sub  { font-family: var(--fm); font-size: 0.65rem; color: var(--muted); }
+        .cv-card-btns { display: flex; gap: 0.6rem; }
+
+
+        /* ── RIGHT COLUMN ── */
+
+        /* Availability card */
+        .avail-card {
+            padding      : 2.2rem;
+            border-radius: 20px;
+            background   : linear-gradient(135deg, rgba(79,142,247,.08), rgba(56,189,248,.04));
+            border       : 1px solid rgba(79, 142, 247, 0.15);
+        }
+
+        .avail-status {
+            display      : flex;
+            align-items  : center;
+            gap          : 0.65rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .avail-dot   { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse-anim 2s infinite; }
+        .avail-label { font-family: var(--fm); font-size: 0.68rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; }
+
+        .avail-head { font-family: var(--fd); font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; }
+        .avail-body { font-size: 0.86rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.4rem; font-weight: 300; }
+
+        .avail-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.6rem; }
+        .avail-tag  { padding: 0.24rem 0.72rem; border-radius: 6px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); font-size: 0.72rem; color: var(--text); font-family: var(--fm); }
+
+
+        /* Quick contact form */
+        .form-section { margin-top: 3rem; }
+
+        .form-title {
+            font-family   : var(--fd);
+            font-size     : 1.5rem;
+            font-weight   : 700;
+            color         : #fff;
+            margin-bottom : 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .form-grid {
+            display              : grid;
+            grid-template-columns: 1fr 1fr;
+            gap                  : 1rem;
+            margin-bottom        : 1rem;
+        }
+
+        .form-group          { display: flex; flex-direction: column; gap: 0.4rem; }
+        .form-group.full-row { grid-column: 1 / -1; }
+
+        label {
+            font-family   : var(--fm);
+            font-size     : 0.65rem;
+            color         : var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        input, textarea {
+            background  : rgba(255, 255, 255, 0.04);
+            border      : 1px solid rgba(255, 255, 255, 0.09);
+            border-radius: 10px;
+            padding     : 0.75rem 1rem;
+            color       : var(--text);
+            font-family : var(--fb);
+            font-size   : 0.88rem;
+            outline     : none;
+            transition  : border-color 0.2s;
+            resize      : vertical;
+        }
+
+        input:focus, textarea:focus { border-color: rgba(79, 142, 247, 0.5); }
+        textarea { min-height: 130px; }
+
+        .form-submit {
+            width          : 100%;
+            justify-content: center;
+            margin-top     : 0.8rem;
+            padding        : 0.85rem;
+            font-size      : 0.9rem;
+            border         : none;
+            cursor         : pointer;
+            font-family    : var(--fb);
+        }
+
+        .form-note {
+            font-size  : 0.75rem;
+            color      : var(--muted);
+            text-align : center;
+            margin-top : 0.8rem;
+            font-family: var(--fm);
+        }
+
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+            .form-grid      { grid-template-columns: 1fr; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="cur"></div>
+    <div id="curt"></div>
+    <canvas id="bgc"></canvas>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+
+    <!-- NAVIGATION -->
+    <nav id="nb">
+        <a href="index.html" class="nlogo">VSA</a>
+        <div class="nlinks">
+            <a href="index.html">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="contact.html" class="active">Contact</a>
+            <a href="VISHAL_FINAL_CV1.pdf" target="_blank" class="cv-nav-btn">📄 Resume</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-hero rv">
+        <div class="ey">Get In Touch</div>
+        <h1>Let's <span>Connect</span></h1>
+        <div class="underline-bar"></div>
+        <p>Open to internships, junior developer roles, and interesting collaborations. I respond fast — let's talk!</p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="wrap">
+        <div class="contact-layout">
+
+            <!-- ── LEFT — contact info ── -->
+            <div>
+                <div class="contact-headline rv">
+                    Let's build something <span>great together</span>
+                </div>
+                <p class="contact-sub rv d1">
+                    I'm actively looking for opportunities in full-stack or frontend development.
+                    Whether it's an internship, a junior role, or an interesting project — I'd love to hear from you.
+                </p>
+
+                <div class="links-list">
+                    <a href="mailto:vishaarul2005@gmail.com" class="contact-link rv d1">
+                        <div class="link-icon">✉️</div>
+                        <div>
+                            <div class="link-label">Email</div>
+                            <div class="link-value">vishaarul2005@gmail.com</div>
+                        </div>
+                    </a>
+                    <a href="tel:+917904368404" class="contact-link rv d2">
+                        <div class="link-icon">📱</div>
+                        <div>
+                            <div class="link-label">Phone</div>
+                            <div class="link-value">+91 7904368404</div>
+                        </div>
+                    </a>
+                    <a href="https://www.linkedin.com/in/vishal-sa" target="_blank" class="contact-link rv d3">
+                        <div class="link-icon">💼</div>
+                        <div>
+                            <div class="link-label">LinkedIn</div>
+                            <div class="link-value">linkedin.com/in/vishal-sa</div>
+                        </div>
+                    </a>
+                    <a href="https://github.com/VishalSudhaArul" target="_blank" class="contact-link rv d4">
+                        <div class="link-icon">🐙</div>
+                        <div>
+                            <div class="link-label">GitHub</div>
+                            <div class="link-value">github.com/VishalSudhaArul</div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- CV Download Card -->
+                <div class="cv-card rv d5">
+                    <div class="cv-card-info">
+                        <div class="cv-card-icon">📄</div>
+                        <div>
+                            <div class="cv-card-name">Vishal Sudha Arul — CV</div>
+                            <div class="cv-card-sub">Full Stack Developer · B.Tech CSE · 2026</div>
+                        </div>
+                    </div>
+                    <div class="cv-card-btns">
+                        <a href="VISHAL_FINAL_CV1.pdf" target="_blank" class="bg" style="padding: 0.5rem 1.1rem; font-size: 0.78rem;">
+                            View ↗
+                        </a>
+                        <a href="VISHAL_FINAL_CV1.pdf" download class="bgh" style="padding: 0.5rem 1.1rem; font-size: 0.78rem;">
+                            ⬇ Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── RIGHT — availability + form ── -->
+            <div class="rv d2">
+
+                <!-- Availability card -->
+                <div class="avail-card">
+                    <div class="avail-status">
+                        <span class="avail-dot"></span>
+                        <span class="avail-label">Available for hire</span>
+                    </div>
+                    <div class="avail-head">Looking for the right opportunity</div>
+                    <div class="avail-body">
+                        I bring strong MERN stack skills, multiple shipped projects, industry certifications,
+                        and genuine enthusiasm for great software. I want a team I can learn from and grow with.
+                    </div>
+                    <div class="avail-tags">
+                        <span class="avail-tag">Full Stack Dev</span>
+                        <span class="avail-tag">React Developer</span>
+                        <span class="avail-tag">Open to Intern</span>
+                        <span class="avail-tag">Remote / Hybrid</span>
+                        <span class="avail-tag">Fresher</span>
+                    </div>
+                    <a href="mailto:vishaarul2005@gmail.com" class="bg" style="width: 100%; justify-content: center; display: flex;">
+                        Send a Message →
+                    </a>
+                </div>
+
+                <!-- Quick message form -->
+                <div class="form-section rv d3">
+                    <div class="form-title">Send a Quick Message</div>
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Your Name</label>
+                                <input type="text" placeholder="John Doe" required/>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" placeholder="you@example.com" required/>
+                            </div>
+                            <div class="form-group full-row">
+                                <label>Subject</label>
+                                <input type="text" placeholder="Internship / Collaboration / Hello 👋" required/>
+                            </div>
+                            <div class="form-group full-row">
+                                <label>Message</label>
+                                <textarea placeholder="Hi Vishal, I'd love to discuss..." required></textarea>
+                            </div>
+                        </div>
+                        <button type="submit" class="bg form-submit" id="submitBtn">
+                            Send Message →
+                        </button>
+                        <div class="form-note" id="formNote"></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer><p>Crafted by <strong>Vishal Sudha Arul</strong> · 2026</p></footer>
+
+    <script src="shared.js"></script>
+    <script>
+        function handleSubmit(e) {
+            e.preventDefault();
+
+            const btn  = document.getElementById('submitBtn');
+            const note = document.getElementById('formNote');
+
+            btn.textContent = 'Sending...';
+            btn.style.opacity = '0.7';
+
+            setTimeout(() => {
+                btn.textContent        = '✓ Message Sent!';
+                btn.style.opacity      = '1';
+                btn.style.background   = 'linear-gradient(135deg, var(--green), #059669)';
+                note.textContent       = 'Note: This is a demo form. Email vishaarul2005@gmail.com directly to reach Vishal.';
+                note.style.color       = 'var(--cyan)';
+
+                setTimeout(() => {
+                    btn.textContent      = 'Send Message →';
+                    btn.style.background = '';
+                    note.textContent     = '';
+                    document.getElementById('contactForm').reset();
+                }, 4000);
+
+            }, 1200);
+        }
+    </script>
+</body>
+</html>

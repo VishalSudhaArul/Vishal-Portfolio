@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Skills — Vishal Sudha Arul</title>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+
+        /* ── SKILLS GRID ── */
+        .skills-grid {
+            display              : grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap                  : 1.2rem;
+        }
+
+        .skill-block { padding: 1.7rem; }
+
+        .skill-cat-label {
+            font-family   : var(--fm);
+            font-size     : 0.63rem;
+            font-weight   : 500;
+            color         : var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            margin-bottom : 1rem;
+            display       : flex;
+            align-items   : center;
+            gap           : 0.5rem;
+        }
+
+        /* Line after label */
+        .skill-cat-label::after {
+            content   : '';
+            flex      : 1;
+            height    : 1px;
+            background: rgba(56, 189, 248, 0.14);
+        }
+
+        .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+
+        .pill {
+            padding      : 0.28rem 0.75rem;
+            border-radius: 7px;
+            background   : rgba(255, 255, 255, 0.04);
+            border       : 1px solid rgba(255, 255, 255, 0.07);
+            font-size    : 0.78rem;
+            color        : var(--text);
+            transition   : all 0.2s;
+        }
+
+        .pill:hover {
+            background  : rgba(79, 142, 247, 0.1);
+            border-color: rgba(79, 142, 247, 0.3);
+            color       : var(--blue);
+        }
+
+
+        /* ── SKILL BARS ── */
+        .skill-bars { margin-top: 4rem; }
+
+        .bars-title {
+            font-family   : var(--fd);
+            font-size     : 1.5rem;
+            font-weight   : 700;
+            color         : #fff;
+            letter-spacing: -0.5px;
+            margin-bottom : 2rem;
+        }
+
+        .bars-grid {
+            display              : grid;
+            grid-template-columns: 1fr 1fr;
+            gap                  : 2rem 4rem;
+        }
+
+        .bar-item { margin-bottom: 1.3rem; }
+
+        .bar-top {
+            display        : flex;
+            justify-content: space-between;
+            align-items    : center;
+            margin-bottom  : 0.5rem;
+        }
+
+        .bar-name { font-size: 0.88rem; font-weight: 500; color: var(--text); }
+        .bar-pct  { font-family: var(--fm); font-size: 0.72rem; color: var(--cyan); }
+
+        .bar-track {
+            height       : 5px;
+            background   : rgba(255, 255, 255, 0.07);
+            border-radius: 99px;
+            overflow     : hidden;
+        }
+
+        .bar-fill {
+            height          : 100%;
+            border-radius   : 99px;
+            background      : linear-gradient(90deg, var(--blue), var(--cyan));
+            transform       : scaleX(0);
+            transform-origin: left;
+            transition      : transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .bar-fill.in { transform: scaleX(1); }
+
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } .bars-grid { grid-template-columns: 1fr; } }
+
+    </style>
+</head>
+<body>
+
+    <div id="cur"></div>
+    <div id="curt"></div>
+    <canvas id="bgc"></canvas>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+
+    <!-- NAVIGATION -->
+    <nav id="nb">
+        <a href="index.html" class="nlogo">VSA</a>
+        <div class="nlinks">
+            <a href="index.html">Home</a>
+            <a href="skills.html"          class="active">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="contact.html">Contact</a>
+            <a href="VISHAL_FINAL_CV1.pdf" target="_blank" class="cv-nav-btn">📄 Resume</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-hero rv">
+        <div class="ey">Technical Expertise</div>
+        <h1>My <span>Skills</span></h1>
+        <div class="underline-bar"></div>
+        <p>A versatile toolkit spanning frontend, backend, databases, security, and deployment — built through real projects and continuous learning.</p>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="wrap">
+
+        <!-- Skills Category Grid -->
+        <div class="skills-grid">
+
+            <div class="g skill-block rv d1">
+                <div class="skill-cat-label">Languages</div>
+                <div class="skill-pills">
+                    <span class="pill">JavaScript</span>
+                    <span class="pill">C++</span>
+                    <span class="pill">PHP</span>
+                    <span class="pill">Python</span>
+                    <span class="pill">HTML5</span>
+                    <span class="pill">CSS3</span>
+                </div>
+            </div>
+
+            <div class="g skill-block rv d2">
+                <div class="skill-cat-label">Frontend</div>
+                <div class="skill-pills">
+                    <span class="pill">React.js</span>
+                    <span class="pill">Tailwind CSS</span>
+                    <span class="pill">Chart.js</span>
+                    <span class="pill">Responsive UI</span>
+                    <span class="pill">DOM APIs</span>
+                </div>
+            </div>
+
+            <div class="g skill-block rv d3">
+                <div class="skill-cat-label">Backend</div>
+                <div class="skill-pills">
+                    <span class="pill">Node.js</span>
+                    <span class="pill">Express.js</span>
+                    <span class="pill">REST APIs</span>
+                    <span class="pill">JWT Auth</span>
+                    <span class="pill">Middleware</span>
+                </div>
+            </div>
+
+            <div class="g skill-block rv d1">
+                <div class="skill-cat-label">Databases</div>
+                <div class="skill-pills">
+                    <span class="pill">MongoDB</span>
+                    <span class="pill">MySQL</span>
+                    <span class="pill">Local Storage</span>
+                    <span class="pill">Mongoose</span>
+                </div>
+            </div>
+
+            <div class="g skill-block rv d2">
+                <div class="skill-cat-label">Tools &amp; DevOps</div>
+                <div class="skill-pills">
+                    <span class="pill">Git</span>
+                    <span class="pill">GitHub</span>
+                    <span class="pill">VS Code</span>
+                    <span class="pill">Vercel</span>
+                    <span class="pill">GitHub Pages</span>
+                </div>
+            </div>
+
+            <div class="g skill-block rv d3">
+                <div class="skill-cat-label">ML / Data</div>
+                <div class="skill-pills">
+                    <span class="pill">Python (ML)</span>
+                    <span class="pill">NLP</span>
+                    <span class="pill">Scikit-learn</span>
+                    <span class="pill">DSA</span>
+                    <span class="pill">Data Analysis</span>
+                </div>
+            </div>
+
+            <div class="g skill-block rv d1">
+                <div class="skill-cat-label">Security</div>
+                <div class="skill-pills">
+                    <span class="pill">Ethical Hacking</span>
+                    <span class="pill">Vulnerability Assessment</span>
+                    <span class="pill">Cybersecurity Fundamentals</span>
+                </div>
+            </div>
+
+            <div class="g skill-block rv d2">
+                <div class="skill-cat-label">Soft Skills</div>
+                <div class="skill-pills">
+                    <span class="pill">Problem Solving</span>
+                    <span class="pill">Adaptability</span>
+                    <span class="pill">Team Work</span>
+                    <span class="pill">Time Management</span>
+                </div>
+            </div>
+
+            <div class="g skill-block rv d3">
+                <div class="skill-cat-label">Cloud / Platforms</div>
+                <div class="skill-pills">
+                    <span class="pill">Oracle Cloud</span>
+                    <span class="pill">Vercel</span>
+                    <span class="pill">MERN Deployment</span>
+                </div>
+            </div>
+
+        </div><!-- /skills-grid -->
+
+
+        <!-- Proficiency Bars -->
+        <div class="skill-bars rv" style="margin-top: 4rem;">
+            <div class="bars-title">Proficiency Overview</div>
+            <div class="bars-grid">
+
+                <div>
+                    <div class="bar-item">
+                        <div class="bar-top"><span class="bar-name">React.js</span><span class="bar-pct">85%</span></div>
+                        <div class="bar-track"><div class="bar-fill" data-w="0.85"></div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-top"><span class="bar-name">JavaScript</span><span class="bar-pct">82%</span></div>
+                        <div class="bar-track"><div class="bar-fill" data-w="0.82"></div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-top"><span class="bar-name">Node.js / Express</span><span class="bar-pct">78%</span></div>
+                        <div class="bar-track"><div class="bar-fill" data-w="0.78"></div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-top"><span class="bar-name">MongoDB</span><span class="bar-pct">75%</span></div>
+                        <div class="bar-track"><div class="bar-fill" data-w="0.75"></div></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="bar-item">
+                        <div class="bar-top"><span class="bar-name">HTML / CSS / Tailwind</span><span class="bar-pct">90%</span></div>
+                        <div class="bar-track"><div class="bar-fill" data-w="0.90"></div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-top"><span class="bar-name">C++</span><span class="bar-pct">72%</span></div>
+                        <div class="bar-track"><div class="bar-fill" data-w="0.72"></div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-top"><span class="bar-name">Python / ML</span><span class="bar-pct">70%</span></div>
+                        <div class="bar-track"><div class="bar-fill" data-w="0.70"></div></div>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar-top"><span class="bar-name">DSA</span><span class="bar-pct">65%</span></div>
+                        <div class="bar-track"><div class="bar-fill" data-w="0.65"></div></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div><!-- /wrap -->
+
+    <footer><p>Crafted by <strong>Vishal Sudha Arul</strong> · 2026</p></footer>
+
+    <script src="shared.js"></script>
+    <script>
+        /* Animate skill bars when they scroll into view */
+        const bars = document.querySelectorAll('.bar-fill');
+
+        const barObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const pct = parseFloat(entry.target.dataset.w) * 100;
+                    entry.target.style.width = pct + '%';
+                    entry.target.classList.add('in');
+                    barObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        bars.forEach(b => { b.style.width = '0%'; barObserver.observe(b); });
+    </script>
+</body>
+</html>

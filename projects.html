@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Projects — Vishal Sudha Arul</title>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+        .proj-list { display: flex; flex-direction: column; gap: 1.6rem; }
+
+        .proj-card {
+            padding: 2rem 2.4rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .proj-meta { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 0.8rem; flex-wrap: wrap; }
+        .proj-num  { font-family: var(--fm); font-size: 0.62rem; color: var(--muted); letter-spacing: 0.1em; }
+
+        .proj-badge {
+            padding: 0.16rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.62rem;
+            font-family: var(--fm);
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .badge-featured { background: rgba(245,158,11,.12); border: 1px solid rgba(245,158,11,.25); color: var(--gold); }
+        .badge-mern     { background: rgba(56,189,248,.1);  border: 1px solid rgba(56,189,248,.2);  color: var(--cyan); }
+        .badge-ml       { background: rgba(56,189,248,.1);  border: 1px solid rgba(56,189,248,.2);  color: var(--cyan); }
+        .badge-agri     { background: rgba(52,211,153,.1);  border: 1px solid rgba(52,211,153,.2);  color: var(--green); }
+        .badge-data     { background: rgba(168,85,247,.1);  border: 1px solid rgba(168,85,247,.2);  color: var(--purple); }
+        .badge-web      { background: rgba(52,211,153,.1);  border: 1px solid rgba(52,211,153,.2);  color: var(--green); }
+
+        .proj-title { font-family: var(--fd); font-size: 1.3rem; font-weight: 700; color: #fff; margin-bottom: 0.65rem; letter-spacing: -0.5px; }
+        .proj-desc  { font-size: 0.86rem; color: var(--muted); line-height: 1.8; margin-bottom: 1.2rem; font-weight: 300; max-width: 580px; }
+
+        .proj-stack { display: flex; flex-wrap: wrap; gap: 0.38rem; margin-bottom: 1.3rem; }
+        .stk {
+            font-size: 0.68rem;
+            font-family: var(--fm);
+            padding: 0.18rem 0.55rem;
+            border-radius: 4px;
+            background: rgba(79,142,247,.08);
+            border: 1px solid rgba(79,142,247,.15);
+            color: var(--blue);
+        }
+
+        .proj-actions { display: flex; gap: 0.7rem; flex-wrap: wrap; }
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.38rem;
+            font-size: 0.72rem;
+            font-family: var(--fm);
+            font-weight: 500;
+            padding: 0.32rem 0.85rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: all 0.2s;
+            letter-spacing: 0.04em;
+        }
+
+        .action-live {
+            color: var(--green);
+            border: 1px solid rgba(52,211,153,.25);
+            background: rgba(52,211,153,.05);
+        }
+        .action-live:hover { background: rgba(52,211,153,.12); border-color: var(--green); }
+
+        .action-gh {
+            color: var(--muted);
+            border: 1px solid rgba(255,255,255,.1);
+            background: rgba(255,255,255,.03);
+        }
+        .action-gh:hover { color: #fff; border-color: rgba(255,255,255,.22); background: rgba(255,255,255,.06); }
+
+        /* Big background number */
+        .proj-bg-num {
+            font-family: var(--fd);
+            font-size: 5rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.04);
+            line-height: 1;
+            letter-spacing: -4px;
+            user-select: none;
+            transition: color 0.3s;
+            align-self: start;
+        }
+        .proj-card:hover .proj-bg-num { color: rgba(79, 142, 247, 0.1); }
+
+        @media (max-width: 700px) { .proj-card { grid-template-columns: 1fr; } .proj-bg-num { display: none; } }
+    </style>
+</head>
+<body>
+
+    <div id="cur"></div>
+    <div id="curt"></div>
+    <canvas id="bgc"></canvas>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+
+    <nav id="nb">
+        <a href="index.html" class="nlogo">VSA</a>
+        <div class="nlinks">
+            <a href="index.html">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html"       class="active">Projects</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="contact.html">Contact</a>
+            <a href="VISHAL_FINAL_CV1.pdf" target="_blank" class="cv-nav-btn">📄 Resume</a>
+        </div>
+    </nav>
+
+    <div class="page-hero rv">
+        <div class="ey">My Work</div>
+        <h1>Things I've <span>Shipped</span></h1>
+        <div class="underline-bar"></div>
+        <p>Real-world applications built, deployed, and live on the internet. Every project solves a real problem.</p>
+    </div>
+
+    <div class="wrap">
+        <div class="proj-list">
+
+            <!-- Project 1 -->
+            <div class="g proj-card rv">
+                <div>
+                    <div class="proj-meta">
+                        <span class="proj-num">01</span>
+                        <span class="proj-badge badge-featured">⭐ Featured</span>
+                        <span class="proj-badge badge-mern">MERN</span>
+                    </div>
+                    <div class="proj-title">Movie Ticket Booking System</div>
+                    <div class="proj-desc">Scalable movie booking platform with secure authentication, role-based access control, and RESTful APIs. Users can explore movies, manage bookings, and access personalised booking history with real-time updates and a fully responsive interface.</div>
+                    <div class="proj-stack">
+                        <span class="stk">MongoDB</span><span class="stk">Express.js</span><span class="stk">React.js</span>
+                        <span class="stk">Node.js</span><span class="stk">JWT Auth</span><span class="stk">REST API</span><span class="stk">Vercel</span>
+                    </div>
+                    <div class="proj-actions">
+                        <a href="https://movie-booking-system-mern-fawn.vercel.app" target="_blank" class="action-btn action-live">↗ Live Demo</a>
+                        <a href="https://github.com/VishalSudhaArul/Movie-Booking-System-MERN" target="_blank" class="action-btn action-gh">⌥ Source Code</a>
+                    </div>
+                </div>
+                <div class="proj-bg-num">01</div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="g proj-card rv">
+                <div>
+                    <div class="proj-meta">
+                        <span class="proj-num">02</span>
+                        <span class="proj-badge badge-ml">🤖 ML / NLP</span>
+                    </div>
+                    <div class="proj-title">AI Fake News Detection System</div>
+                    <div class="proj-desc">ML-powered web app using Natural Language Processing to classify news articles as real or fake. Full pipeline: data preprocessing, feature extraction, model training, and a clean prediction interface with accuracy, precision, and recall evaluation metrics.</div>
+                    <div class="proj-stack">
+                        <span class="stk">Python</span><span class="stk">NLP</span><span class="stk">Scikit-learn</span>
+                        <span class="stk">Flask</span><span class="stk">React</span><span class="stk">Vercel</span>
+                    </div>
+                    <div class="proj-actions">
+                        <a href="https://fake-news-detection-six-psi.vercel.app" target="_blank" class="action-btn action-live">↗ Live Demo</a>
+                        <a href="https://github.com/VishalSudhaArul/Fake-News-Detection" target="_blank" class="action-btn action-gh">⌥ Source Code</a>
+                    </div>
+                </div>
+                <div class="proj-bg-num">02</div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="g proj-card rv">
+                <div>
+                    <div class="proj-meta">
+                        <span class="proj-num">03</span>
+                        <span class="proj-badge badge-agri">🌱 AgriTech</span>
+                    </div>
+                    <div class="proj-title">Smart Agri</div>
+                    <div class="proj-desc">Smart agriculture platform helping farmers with data-driven insights, crop monitoring tools, and decision-making support. Modern web tech applied to bring precision farming capabilities to a simple, accessible interface.</div>
+                    <div class="proj-stack">
+                        <span class="stk">React</span><span class="stk">Node.js</span><span class="stk">MongoDB</span><span class="stk">JavaScript</span><span class="stk">Vercel</span>
+                    </div>
+                    <div class="proj-actions">
+                        <a href="https://smart-agri-beta-ivory.vercel.app" target="_blank" class="action-btn action-live">↗ Live Demo</a>
+                        <a href="https://github.com/VishalSudhaArul/smart-agri" target="_blank" class="action-btn action-gh">⌥ Source Code</a>
+                    </div>
+                </div>
+                <div class="proj-bg-num">03</div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="g proj-card rv">
+                <div>
+                    <div class="proj-meta">
+                        <span class="proj-num">04</span>
+                        <span class="proj-badge badge-data">📊 Analytics</span>
+                    </div>
+                    <div class="proj-title">Student Performance Predictor</div>
+                    <div class="proj-desc">Data-driven dashboard predicting student performance from test scores, attendance, and engagement. DSA-informed logic with interactive Chart.js visualisations, real-time analytics, and local storage for persistent data handling.</div>
+                    <div class="proj-stack">
+                        <span class="stk">HTML</span><span class="stk">CSS</span><span class="stk">JavaScript</span>
+                        <span class="stk">Chart.js</span><span class="stk">Tailwind CSS</span><span class="stk">Local Storage</span>
+                    </div>
+                    <div class="proj-actions">
+                        <a href="https://vishalsudhaarul.github.io/Student-performance-Predictor/" target="_blank" class="action-btn action-live">↗ Live Demo</a>
+                        <a href="https://github.com/VishalSudhaArul/Student-performance-Predictor" target="_blank" class="action-btn action-gh">⌥ Source Code</a>
+                    </div>
+                </div>
+                <div class="proj-bg-num">04</div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="g proj-card rv">
+                <div>
+                    <div class="proj-meta">
+                        <span class="proj-num">05</span>
+                        <span class="proj-badge badge-web">💪 Web App</span>
+                    </div>
+                    <div class="proj-title">Retrofit Fitness &amp; Sports</div>
+                    <div class="proj-desc">Responsive web application promoting fitness awareness with organised info on programs, sports activities, and training options. Demonstrates full-stack component structure, clean navigation, and version-controlled deployment via GitHub.</div>
+                    <div class="proj-stack">
+                        <span class="stk">HTML</span><span class="stk">CSS</span><span class="stk">JavaScript</span><span class="stk">GitHub Pages</span>
+                    </div>
+                    <div class="proj-actions">
+                        <a href="https://github.com/VishalSudhaArul/Retrofit-Fitness-and-Sports" target="_blank" class="action-btn action-gh">⌥ Source Code</a>
+                    </div>
+                </div>
+                <div class="proj-bg-num">05</div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer><p>Crafted by <strong>Vishal Sudha Arul</strong> · 2026</p></footer>
+    <script src="shared.js"></script>
+</body>
+</html>

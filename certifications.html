@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Certifications — Vishal Sudha Arul</title>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+
+        /* ── CERTIFICATE GRID (3 columns like reference) ── */
+        .cert-grid {
+            display              : grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap                  : 1.5rem;
+        }
+
+
+        /* ── CERTIFICATE CARD ── */
+        .cert-card {
+            border-radius: 18px;
+            overflow     : hidden;
+            cursor       : pointer;
+            transition   : all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position     : relative;
+        }
+
+        .cert-card:hover {
+            transform : translateY(-6px);
+            box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 40px rgba(79,142,247,0.1);
+        }
+
+
+        /* ── CERTIFICATE IMAGE AREA ── */
+        .cert-img-wrap {
+            position  : relative;
+            width     : 100%;
+            height    : 200px;
+            overflow  : hidden;
+            background: #0d1530;
+        }
+
+        .cert-img-wrap img {
+            width          : 100%;
+            height         : 100%;
+            object-fit     : cover;
+            object-position: top center;
+            transition     : transform 0.4s ease;
+        }
+
+        .cert-card:hover .cert-img-wrap img { transform: scale(1.04); }
+
+        /* Placeholder shown when image is missing */
+        .cert-img-placeholder {
+            width          : 100%;
+            height         : 100%;
+            display        : flex;
+            flex-direction : column;
+            align-items    : center;
+            justify-content: center;
+            gap            : 0.8rem;
+            background     : linear-gradient(135deg, #0d1530, #111827);
+        }
+
+        .cert-img-placeholder .ph-icon { font-size: 2.5rem; }
+        .cert-img-placeholder p {
+            font-size  : 0.72rem;
+            color      : var(--muted);
+            font-family: var(--fm);
+            text-align : center;
+            padding    : 0 1rem;
+        }
+
+        /* Platform badge (top-left of image) */
+        .cert-platform-badge {
+            position       : absolute;
+            top            : 12px;
+            left           : 12px;
+            padding        : 0.28rem 0.7rem;
+            border-radius  : 6px;
+            font-size      : 0.66rem;
+            font-family    : var(--fm);
+            font-weight    : 700;
+            letter-spacing : 0.06em;
+            text-transform : uppercase;
+            backdrop-filter: blur(8px);
+        }
+
+        /* Date badge (bottom-right of image) */
+        .cert-date-badge {
+            position       : absolute;
+            bottom         : 12px;
+            right          : 12px;
+            padding        : 0.22rem 0.6rem;
+            border-radius  : 5px;
+            background     : rgba(6, 8, 16, 0.8);
+            border         : 1px solid rgba(255, 255, 255, 0.1);
+            font-size      : 0.65rem;
+            font-family    : var(--fm);
+            color          : var(--text);
+            backdrop-filter: blur(8px);
+        }
+
+
+        /* ── CARD BODY ── */
+        .cert-body {
+            padding    : 1.4rem 1.5rem 1.6rem;
+            background : var(--card);
+            border     : 1px solid var(--card-b);
+            border-top : none;
+        }
+
+        .cert-title {
+            font-family   : var(--fd);
+            font-size     : 1rem;
+            font-weight   : 700;
+            color         : #fff;
+            margin-bottom : 0.35rem;
+            letter-spacing: -0.3px;
+            line-height   : 1.25;
+        }
+
+        .cert-issuer-row {
+            display      : flex;
+            align-items  : center;
+            gap          : 0.4rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .cert-issuer-dot  { width: 5px; height: 5px; border-radius: 50%; }
+        .cert-issuer-text { font-size: 0.76rem; color: var(--cyan); font-weight: 500; }
+
+        .cert-desc {
+            font-size    : 0.78rem;
+            color        : var(--muted);
+            line-height  : 1.6;
+            margin-bottom: 1rem;
+            font-weight  : 300;
+        }
+
+        .cert-footer {
+            display        : flex;
+            justify-content: space-between;
+            align-items    : center;
+            padding-top    : 0.8rem;
+            border-top     : 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cert-org  { font-size: 0.72rem; color: var(--muted); font-family: var(--fm); }
+        .cert-when { font-size: 0.72rem; color: var(--blue);  font-family: var(--fm); }
+
+
+        /* ── PLATFORM BADGE COLOURS ── */
+        .plat-oracle    { background: rgba(220,68,68,.15);   border: 1px solid rgba(220,68,68,.3);   color: #f87171; }
+        .plat-hackerrank{ background: rgba(52,211,153,.12);  border: 1px solid rgba(52,211,153,.2);  color: var(--green); }
+        .plat-nptel     { background: rgba(245,158,11,.12);  border: 1px solid rgba(245,158,11,.25); color: var(--gold); }
+        .plat-nasscom   { background: rgba(79,142,247,.12);  border: 1px solid rgba(79,142,247,.25); color: var(--blue); }
+        .plat-codesprint{ background: rgba(168,85,247,.12);  border: 1px solid rgba(168,85,247,.2);  color: var(--purple); }
+        .plat-lpu       { background: rgba(56,189,248,.1);   border: 1px solid rgba(56,189,248,.2);  color: var(--cyan); }
+        .plat-fcc       { background: rgba(245,158,11,.12);  border: 1px solid rgba(245,158,11,.2);  color: var(--gold); }
+        .plat-thuqlak   { background: rgba(52,211,153,.1);   border: 1px solid rgba(52,211,153,.2);  color: var(--green); }
+
+
+        /* ── MODAL OVERLAY ── */
+        .cert-modal-overlay {
+            display        : none;
+            position       : fixed;
+            inset          : 0;
+            z-index        : 1000;
+            align-items    : center;
+            justify-content: center;
+            padding        : 2rem;
+        }
+
+        .cert-modal-overlay.open { display: flex; }
+
+        .cert-overlay-bg {
+            position       : absolute;
+            inset          : 0;
+            background     : rgba(6, 8, 16, 0.85);
+            backdrop-filter: blur(16px);
+        }
+
+        /* ── MODAL CONTENT ── */
+        .cert-modal {
+            position             : relative;
+            z-index              : 1;
+            background           : #0d1530;
+            border               : 1px solid rgba(255, 255, 255, 0.1);
+            border-radius        : 24px;
+            overflow             : hidden;
+            max-width            : 860px;
+            width                : 100%;
+            display              : grid;
+            grid-template-columns: 1.1fr 1fr;
+            box-shadow           : 0 40px 100px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Left — certificate image */
+        .modal-img-side {
+            background     : #060810;
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            min-height     : 420px;
+            padding        : 2rem;
+        }
+
+        .modal-img-side img {
+            width        : 100%;
+            height       : 100%;
+            object-fit   : contain;
+            border-radius: 8px;
+            max-height   : 380px;
+        }
+
+        .modal-no-img {
+            text-align : center;
+            color      : var(--muted);
+            font-size  : 0.82rem;
+            font-family: var(--fm);
+        }
+
+        .modal-no-img .big-icon { font-size: 4rem; display: block; margin-bottom: 1rem; }
+
+        /* Right — info panel */
+        .modal-info-side {
+            padding        : 2.5rem;
+            display        : flex;
+            flex-direction : column;
+            justify-content: center;
+            gap            : 1.1rem;
+        }
+
+        .modal-platform-badge {
+            display        : inline-flex;
+            padding        : 0.3rem 0.8rem;
+            border-radius  : 6px;
+            font-size      : 0.7rem;
+            font-family    : var(--fm);
+            font-weight    : 700;
+            letter-spacing : 0.08em;
+            text-transform : uppercase;
+        }
+
+        .modal-title {
+            font-family   : var(--fd);
+            font-size     : 1.4rem;
+            font-weight   : 700;
+            color         : #fff;
+            letter-spacing: -0.5px;
+            line-height   : 1.2;
+        }
+
+        .modal-row {
+            display      : flex;
+            align-items  : flex-start;
+            gap          : 0.8rem;
+            padding      : 0.8rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .modal-row:last-of-type { border-bottom: none; }
+
+        .modal-row-icon  { font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem; }
+        .modal-row-label { font-family: var(--fm); font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.18rem; }
+        .modal-row-val   { font-size: 0.88rem; font-weight: 600; color: var(--text); }
+
+        .modal-skills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.3rem; }
+        .modal-skill  { padding: 0.18rem 0.55rem; border-radius: 4px; background: rgba(79,142,247,.1); border: 1px solid rgba(79,142,247,.2); font-size: 0.7rem; color: var(--blue); font-family: var(--fm); }
+
+        /* Close button */
+        .modal-close-btn {
+            position       : absolute;
+            top            : 1.2rem;
+            right          : 1.2rem;
+            width          : 36px;
+            height         : 36px;
+            border-radius  : 50%;
+            background     : rgba(255, 255, 255, 0.07);
+            border         : 1px solid rgba(255, 255, 255, 0.1);
+            display        : flex;
+            align-items    : center;
+            justify-content: center;
+            cursor         : pointer;
+            color          : var(--text);
+            font-size      : 1.1rem;
+            transition     : all 0.2s;
+            z-index        : 2;
+        }
+
+        .modal-close-btn:hover { background: rgba(255,255,255,.12); color: #fff; }
+
+        /* Responsive */
+        @media (max-width: 900px) { .cert-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) {
+            .cert-grid                   { grid-template-columns: 1fr; }
+            .cert-modal                  { grid-template-columns: 1fr; }
+            .modal-img-side              { min-height: 240px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="cur"></div>
+    <div id="curt"></div>
+    <canvas id="bgc"></canvas>
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+
+    <!-- NAVIGATION -->
+    <nav id="nb">
+        <a href="index.html" class="nlogo">VSA</a>
+        <div class="nlinks">
+            <a href="index.html">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html" class="active">Certifications</a>
+            <a href="achievements.html">Achievements</a>
+            <a href="contact.html">Contact</a>
+            <a href="VISHAL_FINAL_CV1.pdf" target="_blank" class="cv-nav-btn">📄 Resume</a>
+        </div>
+    </nav>
+
+    <!-- PAGE HEADER -->
+    <div class="page-hero rv">
+        <div class="ey">Credentials</div>
+        <h1><span>Certifications</span></h1>
+        <div class="underline-bar"></div>
+        <p>Professional credentials that validate my technical expertise and continuous learning journey. Click any card to view full details.</p>
+    </div>
+
+    <!-- CERT GRID -->
+    <div class="wrap">
+        <div class="cert-grid" id="certGrid">
+
+            <!-- Card 1 — Oracle -->
+            <div class="g cert-card rv" onclick="openModal(0)">
+                <div class="cert-img-wrap">
+                    <img src="cert-oracle.jpg"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         alt="Oracle Certificate"/>
+                    <div class="cert-img-placeholder" style="display: none;">
+                        <div class="ph-icon">🔴</div>
+                        <p>Add <strong>cert-oracle.jpg</strong> to folder</p>
+                    </div>
+                    <div class="cert-platform-badge plat-oracle">Oracle</div>
+                    <div class="cert-date-badge">Mar 2026</div>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-title">Oracle Data Platform 2025</div>
+                    <div class="cert-issuer-row">
+                        <span class="cert-issuer-dot" style="background: #f87171;"></span>
+                        <span class="cert-issuer-text">Oracle University</span>
+                    </div>
+                    <div class="cert-desc">Certified Foundations Associate — Oracle Cloud Data Platform. Valid until March 2028.</div>
+                    <div class="cert-footer">
+                        <span class="cert-org">Oracle University</span>
+                        <span class="cert-when">Mar 2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 — HackerRank -->
+            <div class="g cert-card rv d1" onclick="openModal(1)">
+                <div class="cert-img-wrap">
+                    <img src="cert-hackerrank.jpg"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         alt="HackerRank Certificate"/>
+                    <div class="cert-img-placeholder" style="display: none;">
+                        <div class="ph-icon">⚛️</div>
+                        <p>Add <strong>cert-hackerrank.jpg</strong> to folder</p>
+                    </div>
+                    <div class="cert-platform-badge plat-hackerrank">HackerRank</div>
+                    <div class="cert-date-badge">Nov 2025</div>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-title">Frontend Developer (React)</div>
+                    <div class="cert-issuer-row">
+                        <span class="cert-issuer-dot" style="background: var(--green);"></span>
+                        <span class="cert-issuer-text">HackerRank</span>
+                    </div>
+                    <div class="cert-desc">Passed the official HackerRank role certification test for React frontend development.</div>
+                    <div class="cert-footer">
+                        <span class="cert-org">HackerRank</span>
+                        <span class="cert-when">Nov 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 — NPTEL -->
+            <div class="g cert-card rv d2" onclick="openModal(2)">
+                <div class="cert-img-wrap">
+                    <img src="cert-nptel.jpg"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         alt="NPTEL Certificate"/>
+                    <div class="cert-img-placeholder" style="display: none;">
+                        <div class="ph-icon">🎓</div>
+                        <p>Add <strong>cert-nptel.jpg</strong> to folder</p>
+                    </div>
+                    <div class="cert-platform-badge plat-nptel">NPTEL</div>
+                    <div class="cert-date-badge">Apr 2025</div>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-title">Privacy &amp; Security in Online Social Media</div>
+                    <div class="cert-issuer-row">
+                        <span class="cert-issuer-dot" style="background: var(--gold);"></span>
+                        <span class="cert-issuer-text">IIT Madras</span>
+                    </div>
+                    <div class="cert-desc">12-week NPTEL course certified by IIT Madras. Score: 54%. Privacy, security threats, and data protection.</div>
+                    <div class="cert-footer">
+                        <span class="cert-org">NPTEL · IIT Madras</span>
+                        <span class="cert-when">Apr 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4 — Nasscom -->
+            <div class="g cert-card rv d1" onclick="openModal(3)">
+                <div class="cert-img-wrap">
+                    <img src="cert-nasscom.jpg"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         alt="Nasscom Certificate"/>
+                    <div class="cert-img-placeholder" style="display: none;">
+                        <div class="ph-icon">🏗️</div>
+                        <p>Add <strong>cert-nasscom.jpg</strong> to folder</p>
+                    </div>
+                    <div class="cert-platform-badge plat-nasscom">thingQbator</div>
+                    <div class="cert-date-badge">2025</div>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-title">Full Stack Development with MERN</div>
+                    <div class="cert-issuer-row">
+                        <span class="cert-issuer-dot" style="background: var(--blue);"></span>
+                        <span class="cert-issuer-text">Nasscom Foundation (Cisco CSR)</span>
+                    </div>
+                    <div class="cert-desc">Certificate of Excellence — thingQbator program, Cisco CSR Commitments. Full MERN stack training.</div>
+                    <div class="cert-footer">
+                        <span class="cert-org">thingQbator × Nasscom</span>
+                        <span class="cert-when">2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 5 — Code Sprint -->
+            <div class="g cert-card rv d2" onclick="openModal(4)">
+                <div class="cert-img-wrap">
+                    <img src="cert-codesprint.jpg"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         alt="Code Sprint Certificate"/>
+                    <div class="cert-img-placeholder" style="display: none;">
+                        <div class="ph-icon">🛡️</div>
+                        <p>Add <strong>cert-codesprint.jpg</strong> to folder</p>
+                    </div>
+                    <div class="cert-platform-badge plat-codesprint">Code Sprint</div>
+                    <div class="cert-date-badge">Mar 2024</div>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-title">Ethical Hacking Industrial Training</div>
+                    <div class="cert-issuer-row">
+                        <span class="cert-issuer-dot" style="background: var(--purple);"></span>
+                        <span class="cert-issuer-text">Code Sprint</span>
+                    </div>
+                    <div class="cert-desc">30+ Hours Live Industrial Training — cybersecurity fundamentals and practical ethical hacking. Feb–Mar 2024.</div>
+                    <div class="cert-footer">
+                        <span class="cert-org">Code Sprint</span>
+                        <span class="cert-when">Mar 2024</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 6 — DSA / LPU -->
+            <div class="g cert-card rv d3" onclick="openModal(5)">
+                <div class="cert-img-wrap">
+                    <img src="cert-dsa.jpg"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         alt="DSA Certificate"/>
+                    <div class="cert-img-placeholder" style="display: none;">
+                        <div class="ph-icon">📊</div>
+                        <p>Add <strong>cert-dsa.jpg</strong> to folder</p>
+                    </div>
+                    <div class="cert-platform-badge plat-lpu">LPU</div>
+                    <div class="cert-date-badge">Jul 2025</div>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-title">Basics of DSA</div>
+                    <div class="cert-issuer-row">
+                        <span class="cert-issuer-dot" style="background: var(--cyan);"></span>
+                        <span class="cert-issuer-text">Lovely Professional University</span>
+                    </div>
+                    <div class="cert-desc">DSA fundamentals — arrays, linked lists, trees, graphs, and algorithms. Grade A.</div>
+                    <div class="cert-footer">
+                        <span class="cert-org">LPU · CPE</span>
+                        <span class="cert-when">Jul 2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 7 — freeCodeCamp -->
+            <div class="g cert-card rv d1" onclick="openModal(6)">
+                <div class="cert-img-wrap">
+                    <img src="cert-fcc.jpg"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         alt="freeCodeCamp Certificate"/>
+                    <div class="cert-img-placeholder" style="display: none;">
+                        <div class="ph-icon">🌐</div>
+                        <p>Add <strong>cert-fcc.jpg</strong> to folder</p>
+                    </div>
+                    <div class="cert-platform-badge plat-fcc">freeCodeCamp</div>
+                    <div class="cert-date-badge">Nov 2023</div>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-title">Responsive Web Design</div>
+                    <div class="cert-issuer-row">
+                        <span class="cert-issuer-dot" style="background: var(--gold);"></span>
+                        <span class="cert-issuer-text">freeCodeCamp</span>
+                    </div>
+                    <div class="cert-desc">Earned after completing 300+ hours of guided practice. HTML, CSS, Flexbox, Grid, responsive design.</div>
+                    <div class="cert-footer">
+                        <span class="cert-org">freeCodeCamp</span>
+                        <span class="cert-when">Nov 2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 8 — C/C++
+            <div class="g cert-card rv d2" onclick="openModal(7)">
+                <div class="cert-img-wrap">
+                    <img src="cert-cpp.jpg"
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                         alt="C++ Certificate"/>
+                    <div class="cert-img-placeholder" style="display: none;">
+                        <div class="ph-icon">⚙️</div>
+                        <p>Add <strong>cert-cpp.jpg</strong> to folder</p>
+                    </div>
+                    <div class="cert-platform-badge plat-thuqlak">Thuqlak</div>
+                    <div class="cert-date-badge">Jul 2024</div>
+                </div>
+                <div class="cert-body">
+                    <div class="cert-title">C &amp; C++ Programming</div>
+                    <div class="cert-issuer-row">
+                        <span class="cert-issuer-dot" style="background: var(--green);"></span>
+                        <span class="cert-issuer-text">Thuqlak Institute, Namakkal</span>
+                    </div>
+                    <div class="cert-desc">3-month structured offline course covering foundational to intermediate C and C++ programming.</div>
+                    <div class="cert-footer">
+                        <span class="cert-org">Thuqlak Institute</span>
+                        <span class="cert-when">Jul 2024</span>
+                    </div>
+                </div>
+            </div> -->
+
+        </div><!-- /cert-grid -->
+    </div><!-- /wrap -->
+
+
+    <!-- ═══════════════════════════
+         MODAL (click on any card)
+    ═══════════════════════════ -->
+    <div class="cert-modal-overlay" id="certModal" onclick="closeIfBackground(event)">
+        <div class="cert-overlay-bg"></div>
+        <div class="cert-modal">
+            <div class="modal-img-side"  id="modalImg"></div>
+            <div class="modal-info-side" id="modalInfo"></div>
+            <div class="modal-close-btn" onclick="closeModal()">✕</div>
+        </div>
+    </div>
+
+
+    <footer><p>Crafted by <strong>Vishal Sudha Arul</strong> · 2026</p></footer>
+    <script src="shared.js"></script>
+    <script>
+
+        /* ── CERT DATA ── */
+        const certs = [
+            {
+                title    : 'Oracle Data Platform 2025',
+                org      : 'Oracle University',
+                date     : 'March 2026',
+                validity : 'Valid until March 2028 · ID: 103427629OCI25DCFA',
+                img      : 'cert-oracle.jpg',
+                platform : 'Oracle',
+                platClass: 'plat-oracle',
+                icon     : '🔴',
+                skills   : ['Oracle Cloud', 'Data Platform', 'SQL', 'Cloud Fundamentals'],
+                desc     : 'Certified Foundations Associate for Oracle Data Platform 2025, recognised by Oracle Corporation.'
+            },
+            {
+                title    : 'Frontend Developer (React)',
+                org      : 'HackerRank',
+                date     : 'November 2025',
+                validity : 'Role Certification · ID: 9B6F81FCBEAD',
+                img      : 'cert-hackerrank.jpg',
+                platform : 'HackerRank',
+                platClass: 'plat-hackerrank',
+                icon     : '⚛️',
+                skills   : ['React.js', 'Component Design', 'Hooks', 'State Management'],
+                desc     : 'Passed the official HackerRank Frontend Developer (React) role certification test.'
+            },
+            {
+                title    : 'Privacy & Security in Online Social Media',
+                org      : 'IIT Madras · NPTEL',
+                date     : 'April 2025',
+                validity : '12-week course · Score: 54% · Roll: NPTEL25CS79S247501051',
+                img      : 'cert-nptel.jpg',
+                platform : 'NPTEL',
+                platClass: 'plat-nptel',
+                icon     : '🎓',
+                skills   : ['Privacy Frameworks', 'Data Security', 'Social Media Policy', 'Cybersecurity'],
+                desc     : '12-week NPTEL course certified by IIT Madras. Online Assignments: 22.18/25 | Proctored Exam: 31.63/75.'
+            },
+            {
+                title    : 'Full Stack Development with MERN',
+                org      : 'thingQbator × Nasscom Foundation',
+                date     : '2025',
+                validity : 'Certificate of Excellence · Cisco CSR 2018–2025',
+                img      : 'cert-nasscom.jpg',
+                platform : 'thingQbator',
+                platClass: 'plat-nasscom',
+                icon     : '🏗️',
+                skills   : ['MongoDB', 'Express.js', 'React.js', 'Node.js', 'Full Stack'],
+                desc     : 'Certificate of Excellence from the thingQbator program, part of Cisco CSR Commitments, partnered with Nasscom Foundation.'
+            },
+            {
+                title    : 'Ethical Hacking Industrial Training',
+                org      : 'Code Sprint',
+                date     : 'March 2024',
+                validity : '30+ Hours Live Training · Cert ID: PmLKpVbm',
+                img      : 'cert-codesprint.jpg',
+                platform : 'Code Sprint',
+                platClass: 'plat-codesprint',
+                icon     : '🛡️',
+                skills   : ['Ethical Hacking', 'Vulnerability Assessment', 'Penetration Testing', 'Cybersecurity'],
+                desc     : 'Completed 30+ hours of live industrial training (Feb 19 – Mar 18, 2024). Covers practical hacking techniques and security fundamentals.'
+            },
+            {
+                title    : 'Basics of DSA',
+                org      : 'Lovely Professional University',
+                date     : 'July 2025',
+                validity : 'Grade A · Certificate No. 408749 · Jun 10 – Jul 26, 2025',
+                img      : 'cert-dsa.jpg',
+                platform : 'LPU',
+                platClass: 'plat-lpu',
+                icon     : '📊',
+                skills   : ['Arrays', 'Linked Lists', 'Trees', 'Graphs', 'Algorithms'],
+                desc     : 'Certified skill development training on core DSA fundamentals by LPU Centre for Professional Enhancement.'
+            },
+            {
+                title    : 'Responsive Web Design',
+                org      : 'freeCodeCamp',
+                date     : 'November 2023',
+                validity : '300+ Hours of Guided Practice',
+                img      : 'cert-fcc.jpg',
+                platform : 'freeCodeCamp',
+                platClass: 'plat-fcc',
+                icon     : '🌐',
+                skills   : ['HTML5', 'CSS3', 'Flexbox', 'CSS Grid', 'Responsive Design'],
+                desc     : 'Earned after 300+ hours of project-based practice covering all aspects of modern responsive web design.'
+            },
+            {
+                title    : 'C & C++ Programming',
+                org      : 'Thuqlak Institute, Namakkal',
+                date     : 'July 2024',
+                validity : '3-Month Structured Offline Course',
+                img      : 'cert-cpp.jpg',
+                platform : 'Thuqlak',
+                platClass: 'plat-thuqlak',
+                icon     : '⚙️',
+                skills   : ['C Programming', 'C++', 'OOP', 'Data Types', 'Pointers'],
+                desc     : 'Structured 3-month offline course at Thuqlak Institute covering foundational to intermediate C and C++ programming.'
+            }
+        ];
+
+
+        /* ── OPEN MODAL ── */
+        function openModal(index) {
+            const cert  = certs[index];
+            const modal = document.getElementById('certModal');
+
+            // Build image side
+            document.getElementById('modalImg').innerHTML = `
+                <img
+                    src="${cert.img}"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                    alt="${cert.title}"
+                />
+                <div class="modal-no-img" style="display: none;">
+                    <span class="big-icon">${cert.icon}</span>
+                    <p>
+                        Screenshot your certificate PDF<br/>
+                        and save it as<br/>
+                        <strong style="color: var(--cyan);">${cert.img}</strong>
+                    </p>
+                </div>
+            `;
+
+            // Build info side
+            document.getElementById('modalInfo').innerHTML = `
+                <div class="modal-platform-badge ${cert.platClass}">${cert.platform}</div>
+                <div class="modal-title">${cert.title}</div>
+
+                <div class="modal-row">
+                    <div class="modal-row-icon">🏛️</div>
+                    <div>
+                        <div class="modal-row-label">Issued by</div>
+                        <div class="modal-row-val">${cert.org}</div>
+                    </div>
+                </div>
+
+                <div class="modal-row">
+                    <div class="modal-row-icon">📅</div>
+                    <div>
+                        <div class="modal-row-label">Date</div>
+                        <div class="modal-row-val">${cert.date}</div>
+                    </div>
+                </div>
+
+                <div class="modal-row">
+                    <div class="modal-row-icon">ℹ️</div>
+                    <div>
+                        <div class="modal-row-label">Details</div>
+                        <div class="modal-row-val" style="font-size: 0.8rem; font-weight: 400; color: var(--muted); line-height: 1.6;">
+                            ${cert.validity}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-row">
+                    <div class="modal-row-icon">🔧</div>
+                    <div>
+                        <div class="modal-row-label">Skills Covered</div>
+                        <div class="modal-skills">
+                            ${cert.skills.map(s => `<span class="modal-skill">${s}</span>`).join('')}
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    class="bg"
+                    style="width: 100%; justify-content: center; cursor: pointer; border: none; font-family: var(--fb); margin-top: 0.5rem;"
+                    onclick="window.open('${cert.img}', '_blank')"
+                >
+                    View Certificate Image ↗
+                </button>
+            `;
+
+            modal.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+
+        /* ── CLOSE MODAL ── */
+        function closeModal() {
+            document.getElementById('certModal').classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        /* Close when clicking background */
+        function closeIfBackground(e) {
+            if (e.target === document.getElementById('certModal')) closeModal();
+        }
+
+        /* Close on Escape key */
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeModal();
+        });
+
+    </script>
+</body>
+</html>

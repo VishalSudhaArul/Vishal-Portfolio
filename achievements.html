@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Achievements — Vishal Sudha Arul</title>
+    <link rel="stylesheet" href="style.css"/>
+    <style>
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; margin-bottom: 3rem; }
+        .stat-card  { padding: 2.2rem 1.6rem; text-align: center; }
+        .stat-big   { font-family: var(--fd); font-size: 3rem; font-weight: 700; line-height: 1; margin-bottom: 0.6rem; }
+        .stat-title { font-size: 0.92rem; font-weight: 600; color: #fff; margin-bottom: 0.4rem; }
+        .stat-note  { font-size: 0.76rem; color: var(--muted); font-weight: 300; line-height: 1.55; }
+        .ach-list   { display: flex; flex-direction: column; gap: 1.2rem; }
+        .ach-item   { padding: 1.8rem 2rem; display: grid; grid-template-columns: auto 1fr auto; gap: 1.5rem; align-items: center; }
+        .ach-icon   { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; flex-shrink: 0; }
+        .ach-label  { font-family: var(--fd); font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 0.3rem; letter-spacing: -0.3px; }
+        .ach-sub    { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+        .ach-date   { font-family: var(--fm); font-size: 0.68rem; color: var(--blue); white-space: nowrap; }
+        .edu-section{ margin-top: 4rem; }
+        .section-head { font-family: var(--fd); font-size: 1.9rem; font-weight: 700; color: #fff; letter-spacing: -1px; margin-bottom: 0.5rem; }
+        .section-sub  { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; font-weight: 300; }
+        .edu-grid   { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+        .edu-card   { padding: 1.8rem; }
+        .edu-icon   { font-size: 1.8rem; margin-bottom: 1rem; }
+        .edu-year   { font-family: var(--fm); font-size: 0.65rem; color: var(--blue); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .edu-degree { font-family: var(--fd); font-size: 0.98rem; font-weight: 700; color: #fff; margin-bottom: 0.25rem; letter-spacing: -0.2px; }
+        .edu-school { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.5rem; }
+        .edu-score  { display: inline-flex; align-items: center; gap: 0.35rem; font-family: var(--fm); font-size: 0.68rem; color: var(--cyan); background: rgba(56,189,248,.08); border: 1px solid rgba(56,189,248,.14); padding: 0.18rem 0.65rem; border-radius: 999px; }
+        @media (max-width: 900px) { .stats-grid { grid-template-columns: 1fr 1fr; } .edu-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 600px) { .ach-item { grid-template-columns: auto 1fr; } .ach-date { display: none; } .edu-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div id="cur"></div><div id="curt"></div>
+    <canvas id="bgc"></canvas>
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+    <nav id="nb">
+        <a href="index.html" class="nlogo">VSA</a>
+        <div class="nlinks">
+            <a href="index.html">Home</a>
+            <a href="skills.html">Skills</a>
+            <a href="projects.html">Projects</a>
+            <a href="certifications.html">Certifications</a>
+            <a href="achievements.html" class="active">Achievements</a>
+            <a href="contact.html">Contact</a>
+            <a href="VISHAL_FINAL_CV1.pdf" target="_blank" class="cv-nav-btn">📄 Resume</a>
+        </div>
+    </nav>
+
+    <div class="page-hero rv">
+        <div class="ey">Milestones</div>
+        <h1>My <span>Achievements</span></h1>
+        <div class="underline-bar"></div>
+        <p>Key milestones that reflect dedication, competitive excellence, and continuous growth in technology.</p>
+    </div>
+
+    <div class="wrap">
+
+        <!-- Stats Row -->
+        <div class="stats-grid">
+            <div class="g stat-card rv">
+                <div class="stat-big" style="background: linear-gradient(135deg, var(--gold), #fbbf24); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">#9</div>
+                <div class="stat-title">FINATHON 2024</div>
+                <div class="stat-note">Top 9 of 500+ in national trading hackathon</div>
+            </div>
+            <div class="g stat-card rv d1">
+                <div class="stat-big" style="background: linear-gradient(135deg, var(--blue), var(--cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">300+</div>
+                <div class="stat-title">Learning Hours</div>
+                <div class="stat-note">freeCodeCamp Responsive Web Design certification</div>
+            </div>
+            <div class="g stat-card rv d2">
+                <div class="stat-big" style="background: linear-gradient(135deg, var(--green), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">80%</div>
+                <div class="stat-title">CUET Percentile</div>
+                <div class="stat-note">Nationwide university entrance exam</div>
+            </div>
+            <div class="g stat-card rv d3">
+                <div class="stat-big" style="background: linear-gradient(135deg, var(--purple), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">8</div>
+                <div class="stat-title">Certifications</div>
+                <div class="stat-note">From Oracle, HackerRank, NPTEL &amp; more</div>
+            </div>
+        </div>
+
+        <!-- Detailed List -->
+        <div class="ach-list">
+            <div class="g ach-item rv">
+                <div class="ach-icon" style="background: rgba(245,158,11,.12);">🏆</div>
+                <div>
+                    <div class="ach-label">9th Place — FINATHON National Hackathon</div>
+                    <div class="ach-sub">Secured 9th position among 500+ participants in a 2-day national trading hackathon. Demonstrated problem-solving, financial analysis, and competitive programming skills under time pressure.</div>
+                </div>
+                <div class="ach-date">Nov 2024</div>
+            </div>
+            <div class="g ach-item rv">
+                <div class="ach-icon" style="background: rgba(79,142,247,.12);">🎓</div>
+                <div>
+                    <div class="ach-label">Oracle Certified Foundations Associate</div>
+                    <div class="ach-sub">Earned the Oracle Data Platform 2025 Certified Foundations Associate credential from Oracle University, valid until March 2028.</div>
+                </div>
+                <div class="ach-date">Mar 2026</div>
+            </div>
+            <div class="g ach-item rv">
+                <div class="ach-icon" style="background: rgba(52,211,153,.12);">⚛️</div>
+                <div>
+                    <div class="ach-label">HackerRank Frontend Developer (React) Certification</div>
+                    <div class="ach-sub">Passed the official HackerRank role certification test — industry-recognised proof of practical React.js skills.</div>
+                </div>
+                <div class="ach-date">Nov 2025</div>
+            </div>
+            <div class="g ach-item rv">
+                <div class="ach-icon" style="background: rgba(245,158,11,.12);">🌐</div>
+                <div>
+                    <div class="ach-label">300+ Hours — freeCodeCamp Responsive Web Design</div>
+                    <div class="ach-sub">Earned the Responsive Web Design certification after completing 300+ hours of project-based guided practice covering HTML, CSS, Flexbox, Grid, and accessibility.</div>
+                </div>
+                <div class="ach-date">Nov 2023</div>
+            </div>
+            <div class="g ach-item rv">
+                <div class="ach-icon" style="background: rgba(56,189,248,.12);">📊</div>
+                <div>
+                    <div class="ach-label">80th Percentile — CUET National Examination</div>
+                    <div class="ach-sub">Ranked in the 80th percentile in CUET, the nationwide undergraduate entrance exam for central universities — secured admission to LPU's B.Tech CSE program.</div>
+                </div>
+                <div class="ach-date">Jul 2023</div>
+            </div>
+            <div class="g ach-item rv">
+                <div class="ach-icon" style="background: rgba(168,85,247,.12);">🚀</div>
+                <div>
+                    <div class="ach-label">5+ Live Projects Deployed to Production</div>
+                    <div class="ach-sub">Shipped 5+ real-world projects on Vercel and GitHub Pages — AI Fake News Detector, MERN Movie Booking, Smart Agri, Student Performance Predictor, and more.</div>
+                </div>
+                <div class="ach-date">2024–2026</div>
+            </div>
+            <div class="g ach-item rv">
+                <div class="ach-icon" style="background: rgba(52,211,153,.12);">🛡️</div>
+                <div>
+                    <div class="ach-label">Ethical Hacking Industrial Training — Code Sprint</div>
+                    <div class="ach-sub">Completed 30+ hours of live industrial training covering vulnerability assessment, penetration testing basics, and practical cybersecurity practices.</div>
+                </div>
+                <div class="ach-date">Mar 2024</div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="edu-section rv">
+            <div class="section-head">Education</div>
+            <div class="section-sub">Building a strong CS foundation while shipping real-world projects in parallel.</div>
+            <div class="edu-grid">
+                <div class="g edu-card rv">
+                    <div class="edu-icon">🎓</div>
+                    <div class="edu-year">Aug 2023 — Present</div>
+                    <div class="edu-degree">B.Tech — Computer Science &amp; Engineering</div>
+                    <div class="edu-school">Lovely Professional University, Phagwara, Punjab</div>
+                    <div class="edu-score">CGPA: 6.45</div>
+                </div>
+                <div class="g edu-card rv d1">
+                    <div class="edu-icon">📚</div>
+                    <div class="edu-year">Jun 2021 — Mar 2023</div>
+                    <div class="edu-degree">Intermediate (Class XII) — CBSE</div>
+                    <div class="edu-school">National Public School, Namakkal, Tamil Nadu</div>
+                    <div class="edu-score">71%</div>
+                </div>
+                <div class="g edu-card rv d2">
+                    <div class="edu-icon">🏫</div>
+                    <div class="edu-year">Jun 2019 — Mar 2021</div>
+                    <div class="edu-degree">Matriculation (Class X) — CBSE</div>
+                    <div class="edu-school">National Public School, Namakkal, Tamil Nadu</div>
+                    <div class="edu-score">79%</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer><p>Crafted by <strong>Vishal Sudha Arul</strong> · 2026</p></footer>
+    <script src="shared.js"></script>
+</body>
+</html>
