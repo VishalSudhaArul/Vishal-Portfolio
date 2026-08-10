@@ -4,9 +4,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Contact — Vishal Sudha Arul</title>
+    
+    <meta name="description" content="Get in touch with Vishal Sudha Arul, Full Stack MERN Developer. Open to full-time engineering roles, junior dev positions, and internships."/>
+    
     <link rel="stylesheet" href="style.css"/>
     <style>
-
         /* ── LAYOUT ── */
         .contact-layout {
             display              : grid;
@@ -15,30 +17,28 @@
             align-items          : start;
         }
 
-
-        /* ── LEFT COLUMN ── */
         .contact-headline {
             font-family   : var(--fd);
             font-size     : clamp(2rem, 3.5vw, 2.8rem);
-            font-weight   : 700;
-            color         : #fff;
+            font-weight   : 800;
+            color         : var(--text);
             letter-spacing: -2px;
             line-height   : 1.1;
             margin-bottom : 1.3rem;
         }
 
         .contact-headline span {
-            background             : linear-gradient(135deg, var(--blue), var(--cyan));
+            background             : linear-gradient(135deg, var(--indigo), var(--cyan));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .contact-sub {
-            color        : var(--muted);
-            font-size    : 0.92rem;
+            color        : var(--text-muted);
+            font-size    : 0.95rem;
             line-height  : 1.75;
             margin-bottom: 2rem;
-            font-weight  : 300;
+            font-weight  : 400;
         }
 
         /* Contact links */
@@ -47,44 +47,69 @@
         .contact-link {
             display        : flex;
             align-items    : center;
-            gap            : 1rem;
+            justify-content: space-between;
             padding        : 0.95rem 1.2rem;
-            border-radius  : 14px;
+            border-radius  : 16px;
             text-decoration: none;
             border         : 1px solid var(--card-b);
             background     : var(--card);
             transition     : all 0.25s;
         }
 
+        .contact-link-left {
+            display    : flex;
+            align-items: center;
+            gap        : 1rem;
+        }
+
         .contact-link:hover {
-            border-color: rgba(79, 142, 247, 0.4);
-            background  : rgba(79, 142, 247, 0.07);
+            border-color: rgba(79, 70, 229, 0.4);
+            background  : var(--indigo-soft);
             transform   : translateX(6px);
         }
 
         .link-icon {
-            width          : 38px;
-            height         : 38px;
-            border-radius  : 10px;
-            background     : rgba(79, 142, 247, 0.1);
-            border         : 1px solid rgba(79, 142, 247, 0.14);
+            width          : 40px;
+            height         : 40px;
+            border-radius  : 12px;
+            background     : var(--indigo-soft);
+            border         : 1px solid rgba(79, 70, 229, 0.2);
             display        : flex;
             align-items    : center;
             justify-content: center;
-            font-size      : 0.95rem;
+            font-size      : 1rem;
             flex-shrink    : 0;
         }
 
-        .link-label { font-family: var(--fm); font-size: 0.6rem;  color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.1rem; }
-        .link-value { font-size:   0.88rem;   font-weight: 500; color: var(--text); }
+        .link-label { font-family: var(--fm); font-size: 0.62rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.1rem; font-weight: 600; }
+        .link-value { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+
+        .copy-pill-btn {
+            background   : var(--card);
+            border       : 1px solid var(--card-b);
+            color        : var(--text-muted);
+            font-family  : var(--fm);
+            font-size    : 0.7rem;
+            font-weight  : 600;
+            padding      : 0.3rem 0.75rem;
+            border-radius: 8px;
+            cursor       : pointer;
+            transition   : all 0.2s;
+        }
+
+        .copy-pill-btn:hover {
+            color       : var(--indigo);
+            border-color: rgba(79, 70, 229, 0.4);
+            background  : var(--indigo-soft);
+        }
 
         /* CV Download Card */
         .cv-card {
             margin-top   : 1.5rem;
             padding      : 1.4rem 1.5rem;
-            border-radius: 16px;
-            background   : linear-gradient(135deg, rgba(79,142,247,.1), rgba(56,189,248,.06));
-            border       : 1px solid rgba(79, 142, 247, 0.2);
+            border-radius: 18px;
+            background   : linear-gradient(135deg, var(--indigo-soft), rgba(6,182,212,0.06));
+            border       : 1px solid rgba(79, 70, 229, 0.2);
             display      : flex;
             align-items  : center;
             justify-content: space-between;
@@ -95,31 +120,29 @@
         .cv-card-info { display: flex; align-items: center; gap: 1rem; }
 
         .cv-card-icon {
-            width          : 44px;
-            height         : 44px;
-            border-radius  : 12px;
-            background     : rgba(79, 142, 247, 0.15);
-            border         : 1px solid rgba(79, 142, 247, 0.25);
+            width          : 46px;
+            height         : 46px;
+            border-radius  : 14px;
+            background     : var(--indigo-soft);
+            border         : 1px solid rgba(79, 70, 229, 0.25);
             display        : flex;
             align-items    : center;
             justify-content: center;
-            font-size      : 1.2rem;
+            font-size      : 1.25rem;
             flex-shrink    : 0;
         }
 
-        .cv-card-name { font-family: var(--fd); font-weight: 700; color: #fff; font-size: 0.95rem; margin-bottom: 0.15rem; }
-        .cv-card-sub  { font-family: var(--fm); font-size: 0.65rem; color: var(--muted); }
+        .cv-card-name { font-family: var(--fd); font-weight: 800; color: var(--text); font-size: 0.98rem; margin-bottom: 0.15rem; }
+        .cv-card-sub  { font-family: var(--fm); font-size: 0.68rem; color: var(--text-muted); }
         .cv-card-btns { display: flex; gap: 0.6rem; }
-
-
-        /* ── RIGHT COLUMN ── */
 
         /* Availability card */
         .avail-card {
             padding      : 2.2rem;
             border-radius: 20px;
-            background   : linear-gradient(135deg, rgba(79,142,247,.08), rgba(56,189,248,.04));
-            border       : 1px solid rgba(79, 142, 247, 0.15);
+            background   : var(--card);
+            border       : 1px solid var(--card-b);
+            box-shadow   : var(--card-shadow);
         }
 
         .avail-status {
@@ -130,14 +153,13 @@
         }
 
         .avail-dot   { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse-anim 2s infinite; }
-        .avail-label { font-family: var(--fm); font-size: 0.68rem; color: var(--green); letter-spacing: 0.1em; text-transform: uppercase; }
+        .avail-label { font-family: var(--fm); font-size: 0.7rem; color: var(--green); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
 
-        .avail-head { font-family: var(--fd); font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: 0.8rem; }
-        .avail-body { font-size: 0.86rem; color: var(--muted); line-height: 1.75; margin-bottom: 1.4rem; font-weight: 300; }
+        .avail-head { font-family: var(--fd); font-size: 1.25rem; font-weight: 800; color: var(--text); margin-bottom: 0.8rem; }
+        .avail-body { font-size: 0.88rem; color: var(--text-muted); line-height: 1.75; margin-bottom: 1.4rem; font-weight: 400; }
 
         .avail-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-bottom: 1.6rem; }
-        .avail-tag  { padding: 0.24rem 0.72rem; border-radius: 6px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08); font-size: 0.72rem; color: var(--text); font-family: var(--fm); }
-
+        .avail-tag  { padding: 0.26rem 0.75rem; border-radius: 8px; background: var(--indigo-soft); border: 1px solid rgba(79,70,229,.15); font-size: 0.74rem; color: var(--indigo); font-family: var(--fm); font-weight: 500; }
 
         /* Quick contact form */
         .form-section { margin-top: 3rem; }
@@ -145,8 +167,8 @@
         .form-title {
             font-family   : var(--fd);
             font-size     : 1.5rem;
-            font-weight   : 700;
-            color         : #fff;
+            font-weight   : 800;
+            color         : var(--text);
             margin-bottom : 1.5rem;
             letter-spacing: -0.5px;
         }
@@ -163,26 +185,32 @@
 
         label {
             font-family   : var(--fm);
-            font-size     : 0.65rem;
-            color         : var(--muted);
+            font-size     : 0.68rem;
+            color         : var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.1em;
+            display       : flex;
+            justify-content: space-between;
+            font-weight   : 600;
         }
 
         input, textarea {
-            background  : rgba(255, 255, 255, 0.04);
-            border      : 1px solid rgba(255, 255, 255, 0.09);
-            border-radius: 10px;
-            padding     : 0.75rem 1rem;
-            color       : var(--text);
-            font-family : var(--fb);
-            font-size   : 0.88rem;
-            outline     : none;
-            transition  : border-color 0.2s;
-            resize      : vertical;
+            background   : var(--card);
+            border       : 1px solid var(--card-b);
+            border-radius: 12px;
+            padding      : 0.8rem 1rem;
+            color        : var(--text);
+            font-family  : var(--fb);
+            font-size    : 0.9rem;
+            outline      : none;
+            transition   : border-color 0.2s, box-shadow 0.2s;
+            resize       : vertical;
         }
 
-        input:focus, textarea:focus { border-color: rgba(79, 142, 247, 0.5); }
+        input:focus, textarea:focus {
+            border-color: var(--indigo);
+            box-shadow  : 0 0 15px rgba(79, 70, 229, 0.15);
+        }
         textarea { min-height: 130px; }
 
         .form-submit {
@@ -197,20 +225,17 @@
         }
 
         .form-note {
-            font-size  : 0.75rem;
-            color      : var(--muted);
+            font-size  : 0.78rem;
+            color      : var(--text-muted);
             text-align : center;
             margin-top : 0.8rem;
             font-family: var(--fm);
         }
 
-
-        /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
             .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
             .form-grid      { grid-template-columns: 1fr; }
         }
-
     </style>
 </head>
 <body>
@@ -224,9 +249,10 @@
 
     <!-- NAVIGATION -->
     <nav id="nb">
-        <a href="index.html" class="nlogo">VSA</a>
+        <a href="index.html" class="nlogo">VSA <span class="nlogo-badge">DEV</span></a>
         <div class="nlinks">
-            <a href="index.html">Home</a>
+            <a href="index.html#hero">Home</a>
+            <a href="index.html#motion-gallery">Showcase</a>
             <a href="skills.html">Skills</a>
             <a href="projects.html">Projects</a>
             <a href="certifications.html">Certifications</a>
@@ -241,51 +267,66 @@
         <div class="ey">Get In Touch</div>
         <h1>Let's <span>Connect</span></h1>
         <div class="underline-bar"></div>
-        <p>Open to internships, junior developer roles, and interesting collaborations. I respond fast — let's talk!</p>
+        <p>Open to full-time roles, internships, junior developer positions, and tech collaborations. Send a message directly or connect via social platforms.</p>
     </div>
 
     <!-- CONTENT -->
     <div class="wrap">
         <div class="contact-layout">
 
-            <!-- ── LEFT — contact info ── -->
+            <!-- LEFT — contact info -->
             <div>
                 <div class="contact-headline rv">
                     Let's build something <span>great together</span>
                 </div>
                 <p class="contact-sub rv d1">
-                    I'm actively looking for opportunities in full-stack or frontend development.
-                    Whether it's an internship, a junior role, or an interesting project — I'd love to hear from you.
+                    I'm actively looking for full-stack engineering and frontend development opportunities.
+                    Whether it's an internship, full-time junior position, or tech project — feel free to get in touch.
                 </p>
 
                 <div class="links-list">
-                    <a href="mailto:vishaarul2005@gmail.com" class="contact-link rv d1">
-                        <div class="link-icon">✉️</div>
-                        <div>
-                            <div class="link-label">Email</div>
-                            <div class="link-value">vishaarul2005@gmail.com</div>
-                        </div>
-                    </a>
-                    <a href="tel:+917904368404" class="contact-link rv d2">
-                        <div class="link-icon">📱</div>
-                        <div>
-                            <div class="link-label">Phone</div>
-                            <div class="link-value">+91 7904368404</div>
-                        </div>
-                    </a>
+                    <div class="contact-link rv d1">
+                        <a href="mailto:vishaarul2005@gmail.com" class="contact-link-left" style="text-decoration:none;">
+                            <div class="link-icon">✉️</div>
+                            <div>
+                                <div class="link-label">Email</div>
+                                <div class="link-value">vishaarul2005@gmail.com</div>
+                            </div>
+                        </a>
+                        <button class="copy-pill-btn" onclick="copyToClipboard('vishaarul2005@gmail.com', 'Email copied to clipboard!')">Copy</button>
+                    </div>
+
+                    <div class="contact-link rv d2">
+                        <a href="tel:+917904368404" class="contact-link-left" style="text-decoration:none;">
+                            <div class="link-icon">📱</div>
+                            <div>
+                                <div class="link-label">Phone</div>
+                                <div class="link-value">+91 7904368404</div>
+                            </div>
+                        </a>
+                        <button class="copy-pill-btn" onclick="copyToClipboard('+917904368404', 'Phone number copied to clipboard!')">Copy</button>
+                    </div>
+
                     <a href="https://www.linkedin.com/in/vishal-sa" target="_blank" class="contact-link rv d3">
-                        <div class="link-icon">💼</div>
-                        <div>
-                            <div class="link-label">LinkedIn</div>
-                            <div class="link-value">linkedin.com/in/vishal-sa</div>
+                        <div class="contact-link-left">
+                            <div class="link-icon">💼</div>
+                            <div>
+                                <div class="link-label">LinkedIn</div>
+                                <div class="link-value">linkedin.com/in/vishal-sa</div>
+                            </div>
                         </div>
+                        <span class="copy-pill-btn">Visit ↗</span>
                     </a>
+
                     <a href="https://github.com/VishalSudhaArul" target="_blank" class="contact-link rv d4">
-                        <div class="link-icon">🐙</div>
-                        <div>
-                            <div class="link-label">GitHub</div>
-                            <div class="link-value">github.com/VishalSudhaArul</div>
+                        <div class="contact-link-left">
+                            <div class="link-icon">🐙</div>
+                            <div>
+                                <div class="link-label">GitHub</div>
+                                <div class="link-value">github.com/VishalSudhaArul</div>
+                            </div>
                         </div>
+                        <span class="copy-pill-btn">Visit ↗</span>
                     </a>
                 </div>
 
@@ -309,29 +350,28 @@
                 </div>
             </div>
 
-            <!-- ── RIGHT — availability + form ── -->
+            <!-- RIGHT — availability + form -->
             <div class="rv d2">
 
                 <!-- Availability card -->
-                <div class="avail-card">
+                <div class="g avail-card">
                     <div class="avail-status">
                         <span class="avail-dot"></span>
                         <span class="avail-label">Available for hire</span>
                     </div>
                     <div class="avail-head">Looking for the right opportunity</div>
                     <div class="avail-body">
-                        I bring strong MERN stack skills, multiple shipped projects, industry certifications,
-                        and genuine enthusiasm for great software. I want a team I can learn from and grow with.
+                        I bring strong MERN stack skills, multiple shipped production projects, industry certifications from Oracle &amp; HackerRank, and genuine enthusiasm for clean software design.
                     </div>
                     <div class="avail-tags">
                         <span class="avail-tag">Full Stack Dev</span>
                         <span class="avail-tag">React Developer</span>
-                        <span class="avail-tag">Open to Intern</span>
-                        <span class="avail-tag">Remote / Hybrid</span>
-                        <span class="avail-tag">Fresher</span>
+                        <span class="avail-tag">Node.js Engineer</span>
+                        <span class="avail-tag">Remote / On-site</span>
+                        <span class="avail-tag">Fresher / Junior</span>
                     </div>
                     <a href="mailto:vishaarul2005@gmail.com" class="bg" style="width: 100%; justify-content: center; display: flex;">
-                        Send a Message →
+                        Direct Email →
                     </a>
                 </div>
 
@@ -342,23 +382,23 @@
                         <div class="form-grid">
                             <div class="form-group">
                                 <label>Your Name</label>
-                                <input type="text" placeholder="John Doe" required/>
+                                <input type="text" id="contactName" placeholder="Alex Smith" required/>
                             </div>
                             <div class="form-group">
                                 <label>Email Address</label>
-                                <input type="email" placeholder="you@example.com" required/>
+                                <input type="email" id="contactEmail" placeholder="alex@example.com" required/>
                             </div>
                             <div class="form-group full-row">
                                 <label>Subject</label>
-                                <input type="text" placeholder="Internship / Collaboration / Hello 👋" required/>
+                                <input type="text" id="contactSubject" placeholder="Software Engineering Role / Project Inquiry" required/>
                             </div>
                             <div class="form-group full-row">
-                                <label>Message</label>
-                                <textarea placeholder="Hi Vishal, I'd love to discuss..." required></textarea>
+                                <label>Message <span id="charCount" style="color: var(--muted);">0/500</span></label>
+                                <textarea id="contactMessage" maxlength="500" placeholder="Hi Vishal, I came across your portfolio and would love to connect..." required oninput="updateCharCount(this)"></textarea>
                             </div>
                         </div>
                         <button type="submit" class="bg form-submit" id="submitBtn">
-                            Send Message →
+                            Send Email →
                         </button>
                         <div class="form-note" id="formNote"></div>
                     </form>
@@ -372,30 +412,36 @@
 
     <script src="shared.js"></script>
     <script>
+        function updateCharCount(el) {
+            const count = el.value.length;
+            document.getElementById('charCount').textContent = `${count}/500`;
+        }
+
         function handleSubmit(e) {
             e.preventDefault();
+
+            const name    = document.getElementById('contactName').value;
+            const email   = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value;
+            const msg     = document.getElementById('contactMessage').value;
 
             const btn  = document.getElementById('submitBtn');
             const note = document.getElementById('formNote');
 
-            btn.textContent = 'Sending...';
-            btn.style.opacity = '0.7';
+            btn.textContent = 'Opening Email Client...';
+            btn.style.opacity = '0.8';
 
+            const mailtoUrl = `mailto:vishaarul2005@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Hi Vishal,\n\n${msg}\n\nFrom: ${name} (${email})`)}`;
+            
             setTimeout(() => {
-                btn.textContent        = '✓ Message Sent!';
-                btn.style.opacity      = '1';
-                btn.style.background   = 'linear-gradient(135deg, var(--green), #059669)';
-                note.textContent       = 'Note: This is a demo form. Email vishaarul2005@gmail.com directly to reach Vishal.';
-                note.style.color       = 'var(--cyan)';
+                window.location.href = mailtoUrl;
+                btn.textContent      = '✓ Ready to Send';
+                btn.style.background = 'linear-gradient(135deg, var(--green), #059669)';
+                note.textContent     = 'Opened your default email client with your message pre-filled!';
+                note.style.color     = 'var(--indigo)';
 
-                setTimeout(() => {
-                    btn.textContent      = 'Send Message →';
-                    btn.style.background = '';
-                    note.textContent     = '';
-                    document.getElementById('contactForm').reset();
-                }, 4000);
-
-            }, 1200);
+                if (window.showToast) showToast('Email client opened with pre-filled message!');
+            }, 600);
         }
     </script>
 </body>

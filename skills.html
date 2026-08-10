@@ -4,8 +4,47 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Skills — Vishal Sudha Arul</title>
+    
+    <meta name="description" content="Technical skills of Vishal Sudha Arul: MERN Stack, React.js, Node.js, Express, MongoDB, Python Machine Learning, Data Structures & Algorithms, C++, and Cybersecurity."/>
+    
     <link rel="stylesheet" href="style.css"/>
     <style>
+        /* ── SEARCH BAR ── */
+        .search-wrap {
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        .search-input-box {
+            width: 100%;
+            padding: 0.85rem 1.2rem 0.85rem 2.8rem;
+            background: var(--card);
+            border: 1px solid var(--card-b);
+            border-radius: 99px;
+            color: var(--text);
+            font-family: var(--fb);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.25s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .search-input-box:focus {
+            border-color: var(--indigo);
+            background: var(--card-hover);
+            box-shadow: 0 0 25px rgba(79, 70, 229, 0.15);
+        }
+
+        .search-icon-inside {
+            position: absolute;
+            left: 1.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--muted);
+            pointer-events: none;
+        }
 
         /* ── SKILLS GRID ── */
         .skills-grid {
@@ -14,56 +53,63 @@
             gap                  : 1.2rem;
         }
 
-        .skill-block { padding: 1.7rem; }
+        .skill-block { padding: 1.8rem; transition: opacity 0.3s, transform 0.3s; }
+        .skill-block.dim { opacity: 0.25; transform: scale(0.97); }
 
         .skill-cat-label {
             font-family   : var(--fm);
-            font-size     : 0.63rem;
-            font-weight   : 500;
-            color         : var(--cyan);
+            font-size     : 0.68rem;
+            font-weight   : 600;
+            color         : var(--indigo);
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            margin-bottom : 1rem;
+            margin-bottom : 1.1rem;
             display       : flex;
             align-items   : center;
             gap           : 0.5rem;
         }
 
-        /* Line after label */
         .skill-cat-label::after {
             content   : '';
             flex      : 1;
             height    : 1px;
-            background: rgba(56, 189, 248, 0.14);
+            background: rgba(79, 70, 229, 0.15);
         }
 
         .skill-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
         .pill {
-            padding      : 0.28rem 0.75rem;
-            border-radius: 7px;
-            background   : rgba(255, 255, 255, 0.04);
-            border       : 1px solid rgba(255, 255, 255, 0.07);
-            font-size    : 0.78rem;
-            color        : var(--text);
+            padding      : 0.3rem 0.8rem;
+            border-radius: 8px;
+            background   : var(--card);
+            border       : 1px solid var(--card-b);
+            font-size    : 0.8rem;
+            font-weight  : 500;
+            color        : var(--text-muted);
             transition   : all 0.2s;
         }
 
         .pill:hover {
-            background  : rgba(79, 142, 247, 0.1);
-            border-color: rgba(79, 142, 247, 0.3);
-            color       : var(--blue);
+            background  : var(--indigo-soft);
+            border-color: rgba(79, 70, 229, 0.4);
+            color       : var(--indigo);
         }
 
+        .pill.highlight {
+            background  : linear-gradient(135deg, var(--indigo), #3730a3);
+            color       : #fff !important;
+            border-color: var(--indigo);
+            box-shadow  : 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
 
         /* ── SKILL BARS ── */
         .skill-bars { margin-top: 4rem; }
 
         .bars-title {
             font-family   : var(--fd);
-            font-size     : 1.5rem;
-            font-weight   : 700;
-            color         : #fff;
+            font-size     : 1.6rem;
+            font-weight   : 800;
+            color         : var(--text);
             letter-spacing: -0.5px;
             margin-bottom : 2rem;
         }
@@ -83,12 +129,12 @@
             margin-bottom  : 0.5rem;
         }
 
-        .bar-name { font-size: 0.88rem; font-weight: 500; color: var(--text); }
-        .bar-pct  { font-family: var(--fm); font-size: 0.72rem; color: var(--cyan); }
+        .bar-name { font-size: 0.9rem; font-weight: 600; color: var(--text); }
+        .bar-pct  { font-family: var(--fm); font-size: 0.75rem; color: var(--indigo); font-weight: 600; }
 
         .bar-track {
-            height       : 5px;
-            background   : rgba(255, 255, 255, 0.07);
+            height       : 6px;
+            background   : var(--card-b);
             border-radius: 99px;
             overflow     : hidden;
         }
@@ -96,7 +142,7 @@
         .bar-fill {
             height          : 100%;
             border-radius   : 99px;
-            background      : linear-gradient(90deg, var(--blue), var(--cyan));
+            background      : linear-gradient(90deg, var(--indigo), var(--cyan));
             transform       : scaleX(0);
             transform-origin: left;
             transition      : transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -104,11 +150,8 @@
 
         .bar-fill.in { transform: scaleX(1); }
 
-
-        /* ── RESPONSIVE ── */
         @media (max-width: 900px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } .bars-grid { grid-template-columns: 1fr; } }
-
     </style>
 </head>
 <body>
@@ -122,10 +165,11 @@
 
     <!-- NAVIGATION -->
     <nav id="nb">
-        <a href="index.html" class="nlogo">VSA</a>
+        <a href="index.html" class="nlogo">VSA <span class="nlogo-badge">DEV</span></a>
         <div class="nlinks">
-            <a href="index.html">Home</a>
-            <a href="skills.html"          class="active">Skills</a>
+            <a href="index.html#hero">Home</a>
+            <a href="index.html#motion-gallery">Showcase</a>
+            <a href="skills.html" class="active">Skills</a>
             <a href="projects.html">Projects</a>
             <a href="certifications.html">Certifications</a>
             <a href="achievements.html">Achievements</a>
@@ -145,8 +189,14 @@
     <!-- CONTENT -->
     <div class="wrap">
 
+        <!-- Search Bar -->
+        <div class="search-wrap rv">
+            <span class="search-icon-inside">🔍</span>
+            <input type="text" id="skillSearch" class="search-input-box" placeholder="Filter skills (e.g. React, Node, Python, C++, SQL)..." oninput="handleSkillSearch(this.value)"/>
+        </div>
+
         <!-- Skills Category Grid -->
-        <div class="skills-grid">
+        <div class="skills-grid" id="skillsGrid">
 
             <div class="g skill-block rv d1">
                 <div class="skill-cat-label">Languages</div>
@@ -244,7 +294,6 @@
 
         </div><!-- /skills-grid -->
 
-
         <!-- Proficiency Bars -->
         <div class="skill-bars rv" style="margin-top: 4rem;">
             <div class="bars-title">Proficiency Overview</div>
@@ -299,7 +348,6 @@
     <script>
         /* Animate skill bars when they scroll into view */
         const bars = document.querySelectorAll('.bar-fill');
-
         const barObserver = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -312,6 +360,35 @@
         }, { threshold: 0.3 });
 
         bars.forEach(b => { b.style.width = '0%'; barObserver.observe(b); });
+
+        /* Live skill search */
+        function handleSkillSearch(val) {
+            const query = val.toLowerCase().trim();
+            const blocks = document.querySelectorAll('.skill-block');
+
+            blocks.forEach(block => {
+                const pills = block.querySelectorAll('.pill');
+                let blockHasMatch = false;
+
+                pills.forEach(pill => {
+                    const text = pill.textContent.toLowerCase();
+                    if (query && text.includes(query)) {
+                        pill.classList.add('highlight');
+                        blockHasMatch = true;
+                    } else {
+                        pill.classList.remove('highlight');
+                    }
+                });
+
+                if (query === '') {
+                    block.classList.remove('dim');
+                } else if (blockHasMatch || block.querySelector('.skill-cat-label').textContent.toLowerCase().includes(query)) {
+                    block.classList.remove('dim');
+                } else {
+                    block.classList.add('dim');
+                }
+            });
+        }
     </script>
 </body>
 </html>
